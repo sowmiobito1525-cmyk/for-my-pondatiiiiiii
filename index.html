@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For My Pondatii ❤️</title>
+
+<style>
+body{
+  margin:0;
+  padding:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  color:white;
+  text-align:center;
+  overflow-x:hidden;
+}
+
+/* INTRO SCREEN */
+#intro{
+  position:fixed;
+  width:100%;
+  height:100vh;
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:26px;
+  z-index:10;
+  cursor:pointer;
+  transition:opacity 2s;
+}
+
+.fadeOut{
+  opacity:0;
+  pointer-events:none;
+}
+
+/* MAIN CONTENT */
+.container{
+  padding:20px;
+  opacity:0;
+  transition:opacity 2s;
+}
+
+.show{
+  opacity:1;
+}
+
+.photo{
+  width:220px;
+  height:220px;
+  object-fit:cover;
+  border-radius:20px;
+  margin:15px;
+  box-shadow:0 0 20px white;
+  animation:fadeIn 2s ease-in-out;
+}
+
+#message{
+  margin-top:20px;
+  font-size:18px;
+  min-height:150px;
+  white-space:pre-line;
+}
+
+.finalLine{
+  font-size:22px;
+  margin-top:30px;
+  animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+  from{ text-shadow:0 0 10px white; }
+  to{ text-shadow:0 0 25px yellow; }
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* FLOATING HEARTS */
+.heart{
+  position:fixed;
+  color:white;
+  font-size:18px;
+  animation:float 6s linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(100vh);opacity:1;}
+  to{transform:translateY(-10vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro" onclick="startSite()">
+  Tap to Begin ❤️
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container" id="mainContent">
+
+<h1>For My Pondatii ❤️</h1>
+
+<!-- Individual Photos -->
+<img src="her.jpg" class="photo">
+<img src="me.jpg" class="photo">
+
+<!-- Together Photo -->
+<img src="together.jpg" class="photo">
+
+<div id="message"></div>
+
+</div>
+
+<!-- Background Song -->
+<audio id="bgMusic" loop>
+  <source src="song.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+function startSite(){
+  document.getElementById("intro").classList.add("fadeOut");
+  document.getElementById("mainContent").classList.add("show");
+  document.getElementById("bgMusic").play();
+  typeEffect();
+}
+
+/* FULL MESSAGE */
+let text = `Nethu panna mari mattum eppavum pannatha dii pondatii...
+Athu oru mari romba hurt aaguthu.
+
+Correct tha naanu apdi tha ellathukum panniruke,
+so apa naanu athu face pannutha...
+Ana ennala antha pain handle panna mudiyathu dii...
+
+Naala 3 movie climax pathutu 10 naal alugura aalu dii 🥺
+Apdi patta enna nee vittu pona en nelama enna aagu?
+
+Entha pacha pullaya unna vitta yaru pathupa sollu 😩
+
+Naa unna vittu poga maten.
+Apdi patta nenapu kuda varathu.
+Athe mari neeyum apdi panna kudathu seriya 🫳
+
+Aprm nee enaku egg puff vangi thare nu solliruka,
+maranthuratha 🥺
+
+Love uuuuuuuuuuuuuuuuuu dii pondatii 🫂❤️‍🩹
+Entha naa unaku ummmmmmmmmmmaaaaaa thare vachuka 😚😚😚`;
+
+let i=0;
+
+function typeEffect(){
+  if(i < text.length){
+    document.getElementById("message").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeEffect,40);
+  } else {
+    showFinal();
+  }
+}
+
+function showFinal(){
+  let final=document.createElement("div");
+  final.classList.add("finalLine");
+  final.innerHTML="Nee dhaan en forever ❤️";
+  document.getElementById("mainContent").appendChild(final);
+}
+
+/* Floating Hearts */
+setInterval(function(){
+  let heart=document.createElement("div");
+  heart.classList.add("heart");
+  heart.style.left=Math.random()*100+"vw";
+  heart.innerHTML="❤️";
+  document.body.appendChild(heart);
+  setTimeout(()=>{heart.remove();},6000);
+},500);
+
+</script>
+
+</body>
+</html>
